@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('-input', type=str, default=os.path.join(os.path.curdir, 'shoutouts'), help='Input folder')
     parser.add_argument('-output', type=str, default=os.path.join(os.path.curdir, 'prepared_shoutouts'),
                         help='Output folder')
-    parser.add_argument('-t', type=int, default=-14, help='Target volume in LUFS (-70 to -5)')
+    parser.add_argument('-t', type=int, default=-5, help='Target volume in LUFS (-70 to -5)')
     
     args = parser.parse_args()
     
@@ -42,7 +42,6 @@ if __name__ == '__main__':
                 
                 if not os.path.exists(infile):
                     continue
-                
                 p.apply_async(prepare_shoutout, (infile, outfile, args.t))
         
         p.close()
