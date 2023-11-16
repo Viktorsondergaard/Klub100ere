@@ -1,0 +1,5 @@
+prepare_track, (infile, outfile, row[2], args.t, args.f)
+
+infile, outfile, 3, -14, 3,
+
+infile=/home/viktor/Desktop/klub
