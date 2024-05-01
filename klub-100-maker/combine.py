@@ -13,6 +13,8 @@ if len(err) != 0:
     exit(1)
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-beercounter', action='store_true', default=False,
+                    help='Set shoutout for beer counting')
 parser.add_argument('-shoutouts', type=str, default=os.path.join(os.path.curdir, 'prepared_shoutouts'),
                     help='Input shoutouts folder')
 parser.add_argument('-tracks', type=str, default=os.path.join(os.path.curdir, 'prepared_tracks'),
@@ -35,8 +37,16 @@ with open('klub.csv', 'rt') as csvfile:
             inputs.append('-i')
             inputs.append(os.path.join(args.shoutouts, str(i) + '.wav'))
         else:
-            inputs.append('-i')
-            inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
+            if args.beercounter:
+                if i == 17 or i == 34 or i == 51 or i == 67 or i == 83:
+                    inputs.append('-i')
+                    inputs.append(os.path.join(args.shoutouts, "0_stiv" + '.wav'))
+                else:
+                    inputs.append('-i')
+                    inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
+            else:
+                inputs.append('-i')
+                inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
         
         inputs.append('-i')
         inputs.append(os.path.join(args.tracks, str(i) + '.wav'))
