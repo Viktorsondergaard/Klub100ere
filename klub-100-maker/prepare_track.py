@@ -11,14 +11,14 @@ if len(err) != 0:
     print(err)
     exit(1)
 
-def prepare_track(input, output, ss=0, t=-14, f=3):
+def prepare_track(input, output, ss=0, t=-14, f=3, track_length='60'):
     print('Preparing', input + '...')
     
     # trim
     p1 = subprocess.Popen(['ffmpeg',
                            '-loglevel', 'error',
                            '-ss', str(ss),
-                           '-i', input, '-t', '60', '-f', 'wav', '-'],
+                           '-i', input, '-t', track_length, '-f', 'wav', '-'],
                           stdout=subprocess.PIPE)
     
     # normalize

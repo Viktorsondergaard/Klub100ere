@@ -44,7 +44,11 @@ if __name__ == '__main__':
                 
                 if not os.path.exists(infile):
                     continue
-                p.apply_async(prepare_track, (infile, outfile, row[2], args.t, args.f))
+                if i >= 74 and i <= 89:
+                    print(f"short track {i}")
+                    p.apply_async(prepare_track, (infile, outfile, row[2], args.t, 2, '30'))
+                else:
+                    p.apply_async(prepare_track, (infile, outfile, row[2], args.t, args.f))
         		
         p.close()
         p.join()

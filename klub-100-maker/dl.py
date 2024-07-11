@@ -53,6 +53,8 @@ if __name__ == '__main__':
             for i, row in enumerate(reader, 1):
                 name = row[name_index]
                 link = row[link_index]
+                if link == "":
+                    continue
                 
                 outfile = os.path.join(tracks_path, str(i) + '.wav')
                 p.apply_async(download, (name, link, outfile))
