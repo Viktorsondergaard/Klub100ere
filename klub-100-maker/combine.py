@@ -37,16 +37,16 @@ with open('klub.csv', 'rt') as csvfile:
             inputs.append('-i')
             inputs.append(os.path.join(args.shoutouts, str(i) + '.wav'))
         else:
-            if args.beercounter:
+            if not args.beercounter:
+                inputs.append('-i')
+                inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
+            else:
                 if i == 17 or i == 34 or i == 51 or i == 67 or i == 83:
                     inputs.append('-i')
                     inputs.append(os.path.join(args.shoutouts, "0_stiv" + '.wav'))
                 else:
                     inputs.append('-i')
                     inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
-            else:
-                inputs.append('-i')
-                inputs.append(os.path.join(args.shoutouts, str(0) + '.wav'))
         
         inputs.append('-i')
         inputs.append(os.path.join(args.tracks, str(i) + '.wav'))
