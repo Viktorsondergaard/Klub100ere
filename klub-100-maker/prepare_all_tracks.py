@@ -21,6 +21,7 @@ if __name__ == '__main__':
                         help='Output folder')
     parser.add_argument('-t', type=int, default=-14, help='Target volume in LUFS (-70 to -5)')
     parser.add_argument('-f', type=float, default=3, help='Fade duration (seconds)')
+    parser.add_argument('-sprint', type=bool, default=False, help='Sprint enabled')
     
     args = parser.parse_args()
     ss_index = 2
@@ -44,11 +45,13 @@ if __name__ == '__main__':
                 
                 if not os.path.exists(infile):
                     continue
-                if i >= 74 and i <= 89:
-                    print(f"short track {i}")
-                    p.apply_async(prepare_track, (infile, outfile, row[2], args.t, 2, '30'))
-                else:
-                    p.apply_async(prepare_track, (infile, outfile, row[2], args.t, args.f))
+                if args.sprint:
+                    if i >= 74 and i <= 89:
+                        print(f"short track {i}")
+                        p.apply_async(prepare_track, (infile, outfile, row[2], args.t, 2, '30'))
+                        continue
+                    
+                p.apply_async(prepare_track, (infile, outfile, row[2], args.t, args.f))
         		
         p.close()
         p.join()

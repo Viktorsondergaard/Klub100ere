@@ -13,7 +13,7 @@ if len(err) != 0:
     exit(1)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-beercounter', action='store_true', default=False,
+parser.add_argument('-beercounter', type=bool, default=False,
                     help='Set shoutout for beer counting')
 parser.add_argument('-shoutouts', type=str, default=os.path.join(os.path.curdir, 'prepared_shoutouts'),
                     help='Input shoutouts folder')
