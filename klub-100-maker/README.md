@@ -1,4 +1,21 @@
+## Setting Up the Environment
+
+Ensure you have `uv` installed. If not, install it using `pipx`:
+
+```bash
+pipx install uv
+uv init
+uv pip install -r requirements.txt
+```
+
+```bash
+uv run python dl.py
+```
+
+
 # Hvordan, hvor og hvorfor gør jeg ting?
+
+OBS: Hvis din dl.py virker dårligt opdatere evt yt-dlp.
 
 Før du kører noget som helst, bør indholdet af denne mappe have følgende struktur:
 
@@ -34,11 +51,10 @@ Denne .csv fil indeholder information om sangene i en klub 100. Hver række svar
 
 Kræver:
  * `python3`
- * `youtube-dl` - for at køre dl.py
+ * `yt-dlp` - for at køre dl.py
  * `ffmpeg` - for at køre prepare_track.py, prepare_shoutout.py og combine.py
 
 ## Gode kommandoer til at tjekke resultater
 
-Upgrade youtube-dl
 ls | wc -l # Tæller alle filer
-for f in *.m4a.wav.wav.wav; do mv -- "$f" "${f%.m4a.wav.wav.wav}.wav"; done
+for f in *.m4a; do mv -- "$f" "${f%.m4a}.wav"; done
